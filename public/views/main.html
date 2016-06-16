@@ -1,0 +1,88 @@
+<div class="navbar">
+	<img class="company nav" src="../styles/images/iSpend.png">
+	<h1 class="greeting">Hello, {{ user.first }}!</h1>
+	<div class="logout nav" ng-click="logout()">
+		<h2>LOG OUT</h2></div>
+	<!-- <h3 class="">user data here</h3> -->
+</div>
+
+<div id="stripe">
+</div>
+<div class="mainContainer">
+
+	<form ng-submit="addUserExpense()">
+		<div class="inputCont">
+			<div class="inputBox">
+				<p class="inputTitle">merchant:</p>
+				<input type="merchant" ng-model="newExpense.merchant" required>
+			</div>
+			<div class="inputBox">
+				<p class="inputTitle">total amount:</p>
+				<input type="currency" placeholder="$ " ng-model="newExpense.cost" required>
+			</div>
+			<div class="inputBox">
+				<p class="inputTitle">type:</p>
+				<input ng-model="newExpense.type">
+			</div>
+			<div class="inputBox">
+				<p class="inputTitle">date:</p>
+				<input type="date" ng-model="newExpense.date">
+			</div>
+			<div class="inputBox">
+				<p class="inputTitle">comments:</p>
+				<input type="textarea" ng-model="newExpense.comment">
+			</div>
+			<!-- <input type="submit"> -->
+			<div id="submitBtn" type="submit" ng-click="addUserExpense()">add</div>
+		</div>
+	</form>
+</div>
+<div class="container">
+	<div class="pending">
+		<h2>pending</h2>
+		<div class="heading">
+			<span class="headSpan border">edit</span
+			><span class="headSpan border">merchant</span
+				><span class="headSpan border">cost</span
+				><span class="headSpan border">type</span
+				><span class="headSpan border">date</span
+				><span class="headSpan">comment</span>
+		</div>
+
+		<div class="content" ng-repeat="expense in pending track by expense._id">
+			<span class="headSpan">
+				<button class="contBtns">edit</button>
+				<button class="contBtns">reimburse</button>
+				<button class="contBtns" ng-click="removeExpense(expense._id)">remove</button>
+			</span
+			><span class="headSpan">{{ expense.merchant }}</span
+					><span class="headSpan">{{ expense.cost }}</span
+					><span class="headSpan">{{ expense.type }}</span
+					><span class="headSpan">{{ expense.date | date: "M/d/yy" }}</span
+					><span class="headSpan">{{ expense.comment }}</span>
+		</div>
+	</div>
+
+</div>
+<div class="container">
+	<div class="reimbursed">
+		<h2>reimbursed</h2>
+		<div class="heading">
+			<span class="headSpan border">merchant</span
+				><span class="headSpan border">cost</span
+				><span class="headSpan border">type</span
+				><span class="headSpan border">date</span
+				><span class="headSpan border">comment</span
+				><span class="headSpan">date reimb</span>
+		</div>
+		<div class="content" ng-repeat="expense in reimbursed track by $id">
+			<span class="headSpan">{{ expense.merchant }}</span
+						><span class="headSpan">{{ expense.cost }}</span
+						><span class="headSpan">{{ expense.type }}</span
+						><span class="headSpan">{{ expense.date | date: "M/d/yy" }}</span
+						><span class="headSpan">{{ expense.comment }}</span
+						><span class="headSpan">{{ expense.dateReimbursed | date: "M/d/yy" }}</span>
+		</div>
+
+	</div>
+</div>

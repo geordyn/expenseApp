@@ -1,0 +1,19 @@
+<h1>login</h1>
+<form>
+<input placeholder="First Name" ng-model="userInfo.first">
+<input placeholder="Last Name" ng-model="userInfo.last">
+<input placeholder="Username" ng-model="userInfo.username">
+<input placeholder="Password" ng-model="userInfo.password">
+<input placeholder="Retype Password">
+<input type="submit">
+<button ng-click="createUser()">Create Account</button>
+</form>
+
+
+<form>
+<input placeholder="Username" ng-model="userLogin.username">
+<input placeholder="Password" ng-model="userLogin.password">
+<input placeholder="Retype Password">
+<input type="submit">
+<button ng-click="loginUser()">Login</button>
+</form>
