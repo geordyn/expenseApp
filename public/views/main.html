@@ -33,7 +33,7 @@
 				<input type="textarea" ng-model="newExpense.comment">
 			</div>
 			<!-- <input type="submit"> -->
-			<div id="submitBtn" type="submit" ng-click="addUserExpense()">add</div>
+			<input class="loginButton" type="button" ng-click="addUserExpense()" value="Add">
 		</div>
 	</form>
 </div>
@@ -41,25 +41,30 @@
 	<div class="pending">
 		<h2>pending</h2>
 		<div class="heading">
-			<span class="headSpan border">edit</span
-			><span class="headSpan border">merchant</span
+			<span class="headSpan border">merchant</span
 				><span class="headSpan border">cost</span
 				><span class="headSpan border">type</span
 				><span class="headSpan border">date</span
-				><span class="headSpan">comment</span>
+				><span class="headSpan border">comment</span
+				><span class="headSpan">edit</span>
 		</div>
 
 		<div class="content" ng-repeat="expense in pending track by expense._id">
-			<span class="headSpan">
-				<button class="contBtns">edit</button>
-				<button class="contBtns">reimburse</button>
-				<button class="contBtns" ng-click="removeExpense(expense._id)">remove</button>
-			</span
-			><span class="headSpan">{{ expense.merchant }}</span
-					><span class="headSpan">{{ expense.cost }}</span
+			<span class="headSpan">{{ expense.merchant }}</span
+					><span class="headSpan negative">{{ -expense.cost | number: 2 }}</span
 					><span class="headSpan">{{ expense.type }}</span
 					><span class="headSpan">{{ expense.date | date: "M/d/yy" }}</span
-					><span class="headSpan">{{ expense.comment }}</span>
+					><span class="headSpan">{{ expense.comment }}</span
+					><span class="headSpan">
+						<button class="contBtns">edit</button>
+						<button class="contBtns" ng-click="reimburse=!reimburse" ng-show="reimburse">Reimburse</button>
+		        			<span ng-hide="reimburse">
+								<input class="smInput" type="date" ng-model="reimburseDate"/>
+								<!-- {{ reimburseDate }} -->
+								<button ng-click="reimburseExp(reimburseDate, expense._id)">reimburse</button>
+		        			</span>
+					<button class="contBtns" ng-click="removeExpense(expense._id)">remove</button>
+					</span>
 		</div>
 	</div>
 
@@ -75,9 +80,9 @@
 				><span class="headSpan border">comment</span
 				><span class="headSpan">date reimb</span>
 		</div>
-		<div class="content" ng-repeat="expense in reimbursed track by $id">
+		<div class="content" ng-repeat="expense in reimbursed track by expense._id">
 			<span class="headSpan">{{ expense.merchant }}</span
-						><span class="headSpan">{{ expense.cost }}</span
+						><span class="headSpan positive">+{{ expense.cost | number: 2 }}</span
 						><span class="headSpan">{{ expense.type }}</span
 						><span class="headSpan">{{ expense.date | date: "M/d/yy" }}</span
 						><span class="headSpan">{{ expense.comment }}</span

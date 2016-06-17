@@ -1,19 +1,82 @@
-<h1>login</h1>
-<form>
-<input placeholder="First Name" ng-model="userInfo.first">
-<input placeholder="Last Name" ng-model="userInfo.last">
-<input placeholder="Username" ng-model="userInfo.username">
-<input placeholder="Password" ng-model="userInfo.password">
-<input placeholder="Retype Password">
-<input type="submit">
-<button ng-click="createUser()">Create Account</button>
-</form>
+<div id="login">
+  <h2>
+      <img class="" src="../styles/images/iSpend.png">
+      <br>Sign In
+  </h2>
+  <form>
+    <fieldset>
+
+      <p>
+        <label class="loginLabel">Username</label>
+        <input class="loginInput" ng-model="userLogin.username" type="text">
+      </p>
+      <p>
+        <label class="loginLabel">Password</label>
+        <input class="loginInput" ng-model="userLogin.password" type="password" id="password" value="password">
+      </p>
+      <p>
+        <input class="loginButton" type="button" ng-click="loginUser()" value="Sign In">
+      </p>
+
+    </fieldset>
+  </form>
+</div>
+
+<div id="login">
+  <h2>
+      Sign Up
+  </h2>
+  <form>
+    <fieldset>
+
+      <p>
+        <label class="loginLabel">First Name</label>
+        <input class="loginInput" ng-model="userInfo.first">
+      </p>
+      <p>
+        <label class="loginLabel">Last Name</label>
+        <input class="loginInput" ng-model="userInfo.last">
+      </p>
+      <p>
+        <label class="loginLabel">Username</label>
+        <input class="loginInput" ng-model="userInfo.username">
+      </p>
+      <p>
+        <label class="loginLabel">Password</label>
+        <input class="loginInput" ng-model="userInfo.password">
+      </p>
+      <p>
+        <label class="loginLabel">Retype Password</label>
+        <input class="loginInput">
+      </p>
+      <p>
+          <input class="loginButton" type="button" ng-click="createUser()" value="Create Account">
+      </p>
+
+    </fieldset>
+  </form>
+</div>
 
 
+
+
+
+<!-- <h1>login</h1>
 <form>
+  <input placeholder="First Name" ng-model="userInfo.first">
+  <input placeholder="Last Name" ng-model="userInfo.last">
+  <input placeholder="Username" ng-model="userInfo.username">
+  <input placeholder="Password" ng-model="userInfo.password">
+  <input placeholder="Retype Password">
+  <input type="submit">
+  <button ng-click="createUser()">Create Account</button>
+</form> -->
+
+
+<!-- <form>
 <input placeholder="Username" ng-model="userLogin.username">
 <input placeholder="Password" ng-model="userLogin.password">
 <input placeholder="Retype Password">
 <input type="submit">
 <button ng-click="loginUser()">Login</button>
-</form>
+</form> -->

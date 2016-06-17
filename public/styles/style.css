@@ -93,6 +93,11 @@ input {
   padding: 5px;
   background-color: rgba(232, 230, 227, 0.63);
 }
+.smInput {
+    font-size: 12px;
+    height: 30px;
+    padding: 0px;
+}
 #stripe {
   background-color: #FFA67D;
   height: 5px;
@@ -143,6 +148,12 @@ input {
   /*text-overflow: ;*/
   background-color: transparent;
   padding: 1px;
+}
+.negative {
+    color: rgb(124, 1, 23);
+}
+.positive {
+    color: #98a448;
 }
 .btnsStripe {
   height: 1em;

@@ -1,0 +1,90 @@
+.loginInput {
+  border: none;
+  font-family: inherit;
+  -webkit-appearance: none;
+  font-size: 2em;
+  line-height: 1.5em;
+  width: 100%;
+  color: #fcf8f2;
+  background-color: rgba(208, 224, 110, 0.82);
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+.loginInput:hover {
+    background-color: #D1E16E;
+}
+
+.loginButton {
+    background-color: rgba(255, 166, 125, 0.84);
+    border: none;
+    color: #fcf8f2;
+    font-size: 2em;
+}
+
+.loginButton:hover {
+    background-color: #FFA67D;
+}
+
+.loginLabel {
+    color: #FFA67D;
+    font-size: 1.3em;
+}
+
+/* ---------- LOGIN ---------- */
+
+#login {
+  margin: 50px auto;
+  width: 90%;
+}
+
+#login h2 {
+  background-color: #fcf8f2;
+  -webkit-border-radius: 20px 20px 0 0;
+  -moz-border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0;
+  color: #FFA67D;
+  font-size: 28px;
+  padding: 20px 26px;
+}
+
+#login h2 span {
+  margin-right: 14px;
+}
+
+#login fieldset {
+  background-color: #fcf8f2;
+  border-color: #A2857D;
+  border-style: double;
+  -webkit-border-radius: 0 0 20px 20px;
+  -moz-border-radius: 0 0 20px 20px;
+  border-radius: 0 0 20px 20px;
+  padding: 20px 26px;
+}
+
+#login fieldset p {
+  color: #fcf8f2;
+  margin-bottom: 14px;
+}
+
+#login fieldset p:last-child {
+  margin-bottom: 0;
+}
+
+#login fieldset input {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/*#login fieldset input {
+  background-color: rgba(208, 224, 110, 0.82);
+  color: #fcf8f2;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#login fieldset input:hover {
+  background-color: #D1E16E;
+}*/

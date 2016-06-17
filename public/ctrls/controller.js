@@ -2,6 +2,8 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
 
 $scope.pending = [];
 $scope.reimbursed = [];
+$scope.reimburse = true;
+// console.log($scope.reimburseDate)
 
   $scope.user = $cookies.getObject('user');
   console.log("user in ctrl", $scope.user)
@@ -40,6 +42,14 @@ $scope.reimbursed = [];
       .then(function(res) {
         $scope.getUserExpenses();
         $scope.newExpense = null;
+      })
+  }
+
+  $scope.reimburseExp = function(reimburseDate, expenseId) {
+      console.log( reimburseDate, expenseId );
+    expenseService.reimburse( reimburseDate, expenseId )
+      .then(function(res) {
+        $scope.getUserExpenses();
       })
   }
 

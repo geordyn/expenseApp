@@ -69,6 +69,8 @@ app.get('/api/logout', function(req, res, next) {
 app.post( '/api/expenses', expenseCtrl.addExpense );
 app.get( '/api/expenses/:id', expenseCtrl.getUserExpenses );
 app.delete( '/api/expenses/:id', expenseCtrl.removeExpense );
+app.put( '/api/expenses/:id', expenseCtrl.reimburse );
+
 
 
 

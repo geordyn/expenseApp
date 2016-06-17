@@ -36,18 +36,18 @@ angular.module("expenseApp").service("expenseService", function($http, $cookies)
     });
   };
 
-  //
-  // this.editExpense = function (editExpense, id) {
-  //   return $http({
-  //     method: 'PUT',
-  //     url: '/api/expenses/' + id,
-  //     data: {
-  //       name: editFeedback.name,
-  //       review: editFeedback.review,
-  //       stars: editFeedback.stars
-  //     }
-  //   });
-  // };
+
+  this.reimburse = function (reimburseDate, expenseId) {
+      console.log(reimburseDate, expenseId);
+
+    return $http({
+      method: 'PUT',
+      url: '/api/expenses/' + expenseId,
+      data: {
+        dateReimbursed: reimburseDate
+      }
+    });
+  };
 
 
 

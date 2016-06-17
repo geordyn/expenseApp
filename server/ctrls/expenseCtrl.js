@@ -35,6 +35,19 @@ module.exports = {
               res.send(expense);
           }
       });
+  },
+
+  reimburse: function(req, res) {
+      Expense.findByIdAndUpdate(req.params.id, req.body, function(err, expense) {
+          if (err) {
+              return console.error(err);
+          } else {
+              res.send(expense);
+          }
+      });
   }
 
+
+
+//end
 };
