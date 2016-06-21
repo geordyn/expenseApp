@@ -94,8 +94,8 @@ input {
   background-color: rgba(232, 230, 227, 0.63);
 }
 .smInput {
-    font-size: 12px;
-    height: 30px;
+    font-size: 16px;
+    height: 35px;
     padding: 0px;
 }
 #stripe {

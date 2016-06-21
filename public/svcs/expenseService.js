@@ -36,6 +36,24 @@ angular.module("expenseApp").service("expenseService", function($http, $cookies)
     });
   };
 
+  this.updateExpense = function(expense, expenseId) {
+    console.log(expense, expenseId);
+    return $http({
+      method: 'PUT',
+      url: '/api/updateExpense/' + expenseId,
+      data: {
+        merchant: expense.merchant,
+        cost: expense.cost,
+        type: expense.type,
+        date: expense.date,
+        comment: expense.comment
+      }
+  }).then(function(res){
+      console.log(res);
+
+  })
+  };
+
 
   this.reimburse = function (reimburseDate, expenseId) {
       console.log(reimburseDate, expenseId);

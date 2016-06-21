@@ -33,7 +33,7 @@
 				<input type="textarea" ng-model="newExpense.comment">
 			</div>
 			<!-- <input type="submit"> -->
-			<input class="loginButton" type="button" ng-click="addUserExpense()" value="Add">
+			<input class="loginButton" type="submit" ng-click="addUserExpense()" value="Add">
 		</div>
 	</form>
 </div>
@@ -50,18 +50,31 @@
 		</div>
 
 		<div class="content" ng-repeat="expense in pending track by expense._id">
-			<span class="headSpan">{{ expense.merchant }}</span
-					><span class="headSpan negative">{{ -expense.cost | number: 2 }}</span
-					><span class="headSpan">{{ expense.type }}</span
-					><span class="headSpan">{{ expense.date | date: "M/d/yy" }}</span
-					><span class="headSpan">{{ expense.comment }}</span
+			<span ng-show="edit" class="headSpan">{{ expense.merchant }}</span
+					><span ng-show="edit" class="headSpan negative">{{ -expense.cost | number: 2 }}</span
+					><span ng-show="edit" class="headSpan">{{ expense.type }}</span
+					><span ng-show="edit" class="headSpan">{{ expense.date | date: "M/d/yy" }}</span
+					><span ng-show="edit" class="headSpan">{{ expense.comment }}</span
+					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.merchant"
+					></span
+					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.cost"
+					></span
+					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.type"
+					></span
+					><span ng-hide="edit" class="headSpan">{{expense.date | date: "M/d/yy"}}<input class="smInput" type="date" ng-model="expense.date"></span
+					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.comment"
+					></span
 					><span class="headSpan">
-						<button class="contBtns">edit</button>
-						<button class="contBtns" ng-click="reimburse=!reimburse" ng-show="reimburse">Reimburse</button>
+						<button class="contBtns" ng-click="edit=!edit">edit</button
+							><span ng-hide="edit">
+							<button ng-click="updateExpense(expense, expense._id)">submit</button>
+						</span
+						><button class="contBtns" ng-click="reimburse=!reimburse" ng-show="reimburse">Reimburse</button>
 		        			<span ng-hide="reimburse">
-								<input class="smInput" type="date" ng-model="reimburseDate"/>
 								<!-- {{ reimburseDate }} -->
 								<button ng-click="reimburseExp(reimburseDate, expense._id)">reimburse</button>
+								<input class="smInput" type="date" ng-model="reimburseDate"/>
+
 		        			</span>
 					<button class="contBtns" ng-click="removeExpense(expense._id)">remove</button>
 					</span>
