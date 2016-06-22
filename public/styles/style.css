@@ -2,11 +2,13 @@
   box-sizing: border-box;
   color: #2C211B;
 }
+
 body {
   margin: 0;
   background-color: rgba(45, 34, 27, 0.32);
   font-family: "Montserrat", "Avenir";
 }
+
 h1, h2, h3 {
   color: #A2857D;
   background-color: #fcf8f2;
@@ -17,37 +19,54 @@ h1, h2, h3 {
   text-transform: uppercase;
   border: 0px;
 }
+
+h2 {
+  font-size: 3em;
+}
+
 h3 {
   color: #2C211B;
 }
 
 .greeting {
-    font-size: 5em;
+  font-size: 5em;
 }
+
 .navbar {
-    background-color: #fcf8f2;
-    margin: auto;
-    text-align: center;
-    padding-top: 10px;
+  background-color: #fcf8f2;
+  margin: auto;
+  text-align: center;
+  padding-top: 10px;
+  position: relative;
+  color: #FFA67D;
 }
+
 .nav h2 {
-    background-color: transparent;
-    color: #FFA67D;
+  background-color: transparent;
+  color: #FFA67D;
+  font-size: 3em;
 }
-.nav {
-    display: inline-block;
-    margin: 0px 50px 0px 50px;
-    text-transform: uppercase;
-    padding: 15px 0;
-    font-size: 1.2em;
-    cursor: pointer;
+
+#logColor {
+  color: #FFA67D;
 }
 .company {
-    cursor: default;
+  cursor: default;
 }
-.logout {
-    display: block;
+
+#logout {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /*width: 200px;*/
+  margin: 0px 50px 0px 50px;
+  text-transform: uppercase;
+  padding: 15px 0;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #FFA67D;
 }
+
 button {
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -57,11 +76,13 @@ button {
   outline: none;
   font-weight: normal;
 }
+
 #submitBtn:hover {
   color: #fcf8f2;
   background-color: #D1E16E;
   border: 3px solid #FFA67D;
 }
+
 #submitBtn {
   height: 150px;
   width: 100%;
@@ -75,14 +96,15 @@ button {
   text-align: center;
   padding-top: 75px;
 }
+
 .inputTitle {
   margin: 0 1%;
   font-size: 1.5em;
   color: #2C211B;
-  ;
   padding-top: 15px;
   text-transform: uppercase;
 }
+
 input {
   margin: auto;
   font-size: 3em;
@@ -93,15 +115,18 @@ input {
   padding: 5px;
   background-color: rgba(232, 230, 227, 0.63);
 }
+
 .smInput {
-    font-size: 16px;
-    height: 35px;
-    padding: 0px;
+  font-size: 16px;
+  height: 35px;
+  padding: 0px;
 }
+
 #stripe {
   background-color: #FFA67D;
   height: 5px;
 }
+
 .mainContainer {
   margin: 25px auto;
   max-width: 900px;
@@ -109,9 +134,11 @@ input {
   border-radius: 1%;
   padding: 1% 1%;
 }
+
 .inputCont {
   margin: 0 auto;
 }
+
 .inputBox {
   margin: auto;
   margin-bottom: 10px;
@@ -124,13 +151,14 @@ input {
 }
 
 .pending {
-	background-color: #fcf8f2;
-
+  background-color: #fcf8f2;
+  padding: 5px;
 }
-.reimbursed {
-	margin-top: 20px;
-	background-color: #fcf8f2;
 
+.reimbursed {
+  margin-top: 20px;
+  background-color: #fcf8f2;
+  padding: 5px;
 }
 
 .headSpan {
@@ -143,17 +171,20 @@ input {
   text-align: center;
   text-transform: uppercase;
   word-wrap: break-word;
-  font-size: 1.6em;
+  font-size: 2em;
   justify-content: flex-start;
   /*text-overflow: ;*/
   background-color: transparent;
   padding: 1px;
 }
 .negative {
-    color: rgb(124, 1, 23);
+  color: rgb(124, 1, 23);
 }
 .positive {
-    color: #98a448;
+  color: #98a448;
+}
+.green {
+  color: #D1E16E;
 }
 .btnsStripe {
   height: 1em;
@@ -166,26 +197,54 @@ input {
 .border {
   border-right: 3px solid #8f8f8f;
 }
-
 .content {
   border-top: 3px solid #8f8f8f;
   background-color: rgba(232, 230, 227, 0.63);
-
 }
 .content:hover {
-  background-color: #EACEC1;
+  background-color: #f7eeea;
   color: inherit;
 }
 .contBtns {
   background-color: inherit;
   color: #FFA67D;
   border: none;
-  padding: 5px;
+  /*padding: 5px;*/
   margin: auto;
   display: block;
-  font-size: 0.5em;
+  font-size: 0.85em;
 }
 .contBtns:hover {
   background-color: white;
   color: #2C211B;
+}
+#editInput {
+  border-color: #cccccc;
+  border-style: solid;
+  border-radius: 0.3em;
+  padding: 12px;
+  width: 97%;
+  font-size: 1em;
+  border-width: 0px;
+  text-shadow: 0px 0px 0px rgba(42, 42, 42, .75);
+  box-shadow: 0px 3px 12px 0px rgba(193, 193, 193, 0.72);
+  background-color: #ffffff;
+}
+.reimbQty {
+  width: 80px;
+  height: 80px;
+  font-size: 2.5em;
+  margin: 10px;
+  margin-bottom: 0px;
+  border-width: 0px;
+  text-shadow: 0px 0px 0px rgba(42, 42, 42, .75);
+  box-shadow: 0px 3px 12px 0px rgba(193, 193, 193, 0.72);
+  background-color: #ffffff;
+}
+.qty {
+  display: inline-block;
+}
+
+.qty label {
+  font-size: 2em;
 }

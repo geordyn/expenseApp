@@ -15,7 +15,9 @@ angular.module("expenseApp")
       }).then(function(res) {
         console.log(res);
         if (res.status === 200) {
-          alert("Sign up successful. Please Log in.");
+          var user = res.data;
+          $cookies.putObject('user', user);
+          // $state.go('main');
         } else {
           alert('Login Failed');
         }
@@ -43,7 +45,8 @@ angular.module("expenseApp")
           alert('Login Failed');
         }
       }, function(err) {
-        alert('Login Failed');
+          swal("Login Failed", "Your password or username was incorrect. If you do not have an account, please sign up.", "error")
+
         res.send(err);
       });
     };
@@ -63,6 +66,7 @@ angular.module("expenseApp")
         method: 'GET',
         url: '/api/logout'
       }).then(function(res) {
+          $cookies.remove('user');
         return res;
       });
     };

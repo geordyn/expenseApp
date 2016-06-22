@@ -1,8 +1,9 @@
 <div class="navbar">
 	<img class="company nav" src="../styles/images/iSpend.png">
 	<h1 class="greeting">Hello, {{ user.first }}!</h1>
-	<div class="logout nav" ng-click="logout()">
-		<h2>LOG OUT</h2></div>
+	<div id="logout" >
+		<i class="fa fa-user-times fa-3x" id="logColor" aria-hidden="true" ng-click="logout()"></i>
+	</div>
 	<!-- <h3 class="">user data here</h3> -->
 </div>
 
@@ -10,42 +11,45 @@
 </div>
 <div class="mainContainer">
 
-	<form ng-submit="addUserExpense()">
-		<div class="inputCont">
-			<div class="inputBox">
-				<p class="inputTitle">merchant:</p>
-				<input type="merchant" ng-model="newExpense.merchant" required>
-			</div>
-			<div class="inputBox">
-				<p class="inputTitle">total amount:</p>
-				<input type="currency" placeholder="$ " ng-model="newExpense.cost" required>
-			</div>
-			<div class="inputBox">
-				<p class="inputTitle">type:</p>
-				<input ng-model="newExpense.type">
-			</div>
-			<div class="inputBox">
-				<p class="inputTitle">date:</p>
-				<input type="date" ng-model="newExpense.date">
-			</div>
-			<div class="inputBox">
-				<p class="inputTitle">comments:</p>
-				<input type="textarea" ng-model="newExpense.comment">
-			</div>
-			<!-- <input type="submit"> -->
-			<input class="loginButton" type="submit" ng-click="addUserExpense()" value="Add">
+	<div id="formStyle">
+		<form ng-model="expenseForm" novalidate name="expense">
+			<div class="form_wrap">
+				<h2>Add Expense</h2>
+
+				<input type="text" name="merchant" placeholder="Merchant" ng-model="newExpense.merchant" ng-required="true" />
+				<p class="error" ng-show="expense.merchant.$invalid && expense.merchant.$touched"> Please, enter merchant name.</p>
+
+				<input type="number" name="cost" placeholder="Cost" ng-model="newExpense.cost" ng-required="true" />
+				<p class="error" ng-show="expense.cost.$invalid && expense.cost.$touched">Please, enter cost of expense.</p>
+
+				<input type="text" name="type" placeholder="Type" ng-model="newExpense.type" ng-required="true" />
+				<p class="error" ng-show="expense.type.$invalid && expense.type.$touched"> Please, enter type of expense (ie: food).</p>
+
+				<input type="date" name="date" ng-model="newExpense.date" />
+				<!-- <p class="error" ng-show="expense.date.$invalid && expense.date.$touched"> Please, enter your first name</p> -->
+
+				<input type="text" name="comment" placeholder="Comment" ng-model="newExpense.comment" />
+				<!-- <p class="error" ng-show="expense.comment.$invalid && expense.comment.$touched"> Please, enter your first name</p> -->
+
+				<div>
+					<input type="submit" class="loginButton" value="Add Expense" ng-click="addUserExpense()" />
+				</div>
+
+
+		</form>
 		</div>
-	</form>
+	</div>
 </div>
+
 <div class="container">
 	<div class="pending">
 		<h2>pending</h2>
 		<div class="heading">
-			<span class="headSpan border">merchant</span
+			<span class="headSpan border">merch</span
 				><span class="headSpan border">cost</span
 				><span class="headSpan border">type</span
 				><span class="headSpan border">date</span
-				><span class="headSpan border">comment</span
+				><span class="headSpan border">cmnt</span
 				><span class="headSpan">edit</span>
 		</div>
 
@@ -55,45 +59,46 @@
 					><span ng-show="edit" class="headSpan">{{ expense.type }}</span
 					><span ng-show="edit" class="headSpan">{{ expense.date | date: "M/d/yy" }}</span
 					><span ng-show="edit" class="headSpan">{{ expense.comment }}</span
-					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.merchant"
+					><span ng-hide="edit" class="headSpan"><input id="editInput" class="smInput" ng-model="editExpense.merchant" placeholder="{{expense.merchant}}"
 					></span
-					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.cost"
+					><span ng-hide="edit" class="headSpan"><input id="editInput" class="smInput" ng-model="editExpense.cost" placeholder="{{expense.cost}}"
 					></span
-					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.type"
+					><span ng-hide="edit" class="headSpan"><input id="editInput" class="smInput" ng-model="editExpense.type" placeholder="{{expense.type}}"
 					></span
-					><span ng-hide="edit" class="headSpan">{{expense.date | date: "M/d/yy"}}<input class="smInput" type="date" ng-model="expense.date"></span
-					><span ng-hide="edit" class="headSpan"><input class="smInput" ng-model="expense.comment"
+					><span ng-hide="edit" class="headSpan">{{expense.date | date: "M/d/yy"}}<input id="editInput" class="smInput" type="text" ng-model="editExpense.date" placeholder="MM/DD/YYYY" ></span
+					><span ng-hide="edit" class="headSpan"><input id="editInput" class="smInput" ng-model="editExpense.comment" placeholder="{{expense.comment}}"
 					></span
 					><span class="headSpan">
-						<button class="contBtns" ng-click="edit=!edit">edit</button
-							><span ng-hide="edit">
-							<button ng-click="updateExpense(expense, expense._id)">submit</button>
-						</span
-						><button class="contBtns" ng-click="reimburse=!reimburse" ng-show="reimburse">Reimburse</button>
-		        			<span ng-hide="reimburse">
-								<!-- {{ reimburseDate }} -->
-								<button ng-click="reimburseExp(reimburseDate, expense._id)">reimburse</button>
-								<input class="smInput" type="date" ng-model="reimburseDate"/>
+						<button class="contBtns" ng-show="edit" ng-click="edit=!edit">edit</button>
+							<button class="contBtns" ng-click="rmbAlert(expense._id)">Reimburse</button>
 
-		        			</span>
-					<button class="contBtns" ng-click="removeExpense(expense._id)">remove</button>
-					</span>
+			<button class="contBtns" ng-click="rmvAlert(expense._id)">remove</button>
+
+		<span ng-hide="edit">
+			<i class="fa fa-check fa-2x green" aria-hidden="true" ng-click="updateExpense(editExpense,expense._id); edit=!edit; editExpense=null"></i>
+				<i class="fa fa-times fa-2x negative" aria-hidden="true" ng-click="edit=!edit"></i>
+		</span>
+			</span>
 		</div>
 	</div>
 
 </div>
 <div class="container">
 	<div class="reimbursed">
-		<h2>reimbursed</h2>
+		<div class="qty">
+			<label for="quantity">Show # of most recent expenses:</label>
+			<input name="quantity" class="reimbQty" ng-model="quantity" type="number">
+		</div>
+		<h2 class="rmb">reimbursed</h2>
 		<div class="heading">
-			<span class="headSpan border">merchant</span
+			<span class="headSpan border">merch</span
 				><span class="headSpan border">cost</span
 				><span class="headSpan border">type</span
 				><span class="headSpan border">date</span
-				><span class="headSpan border">comment</span
-				><span class="headSpan">date reimb</span>
+				><span class="headSpan border">cmnt</span
+				><span class="headSpan">rmb</span>
 		</div>
-		<div class="content" ng-repeat="expense in reimbursed track by expense._id">
+		<div class="content" ng-repeat="expense in reimbursed | orderBy:'':true | limitTo: quantity track by expense._id ">
 			<span class="headSpan">{{ expense.merchant }}</span
 						><span class="headSpan positive">+{{ expense.cost | number: 2 }}</span
 						><span class="headSpan">{{ expense.type }}</span

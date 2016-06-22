@@ -1,90 +1,70 @@
-.loginInput {
-  border: none;
-  font-family: inherit;
-  -webkit-appearance: none;
-  font-size: 2em;
-  line-height: 1.5em;
-  width: 100%;
-  color: #fcf8f2;
-  background-color: rgba(208, 224, 110, 0.82);
-  display: block;
-  margin: 0 auto;
-  width: 100%;
+#login{
+  background-color:#fcf8f2;
+  width:100%;
+  margin:0 auto;
+  min-height:100vh;
+  overflow: auto;
+  text-align:center;
+  padding-top: 35px;
 }
-.loginInput:hover {
+#formStyle {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#formStyle input{
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:7px;
+  border:none;
+  width:95%;
+  background-color: rgba(228, 228, 228, 0.76);
+}
+
+#formStyle form{
+  margin: 0 auto;
+  width:90%;
+  /*padding:30px;*/
+}
+
+.logo{
+    padding: 0px;
+}
+
+.formStyleInput:hover {
     background-color: #D1E16E;
 }
 
-.loginButton {
-    background-color: rgba(255, 166, 125, 0.84);
-    border: none;
-    color: #fcf8f2;
-    font-size: 2em;
-}
-
-.loginButton:hover {
+.formStyleButton:hover {
     background-color: #FFA67D;
 }
 
-.loginLabel {
+.form_wrap {
+    background-color:#fcf8f2;
+    /*margin-top: 100px;*/
+
+}
+#formStyle h2{
+    background-color: #fcf8f2;
+    -webkit-border-radius: 20px 20px 0 0;
+    -moz-border-radius: 20px 20px 0 0;
+    border-radius: 20px 20px 0 0;
     color: #FFA67D;
-    font-size: 1.3em;
+    font-size: 3em;
+    padding: 20px 26px;
 }
 
-/* ---------- LOGIN ---------- */
-
-#login {
-  margin: 50px auto;
-  width: 90%;
-}
-
-#login h2 {
-  background-color: #fcf8f2;
-  -webkit-border-radius: 20px 20px 0 0;
-  -moz-border-radius: 20px 20px 0 0;
-  border-radius: 20px 20px 0 0;
-  color: #FFA67D;
-  font-size: 28px;
-  padding: 20px 26px;
-}
-
-#login h2 span {
-  margin-right: 14px;
-}
-
-#login fieldset {
-  background-color: #fcf8f2;
-  border-color: #A2857D;
-  border-style: double;
-  -webkit-border-radius: 0 0 20px 20px;
-  -moz-border-radius: 0 0 20px 20px;
-  border-radius: 0 0 20px 20px;
-  padding: 20px 26px;
-}
-
-#login fieldset p {
+#formStyle input[type="submit"]{
+  background-color: rgba(255, 166, 125, 0.84);
+  border: none;
   color: #fcf8f2;
-  margin-bottom: 14px;
+  font-size: 2em;
 }
 
-#login fieldset p:last-child {
-  margin-bottom: 0;
+#formStyle .error{height:30px; color:#FFA67D;
 }
-
-#login fieldset input {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+#formStyle input.ng-valid.ng-touched{
+  border:2px solid #D1E16E;
 }
-
-/*#login fieldset input {
-  background-color: rgba(208, 224, 110, 0.82);
-  color: #fcf8f2;
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-}
-
-#login fieldset input:hover {
-  background-color: #D1E16E;
-}*/
+#formStyle input.ng-invalid.ng-touched {
+  border:2px solid #FFA67D;
+ }

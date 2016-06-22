@@ -1,4 +1,4 @@
-angular.module('expenseApp', ['ui.router', 'ngCookies']);
+angular.module('expenseApp', ['ui.router', 'ngAnimate', 'ngCookies']);
 
 angular.module('expenseApp')
   .config(function($stateProvider, $urlRouterProvider) {

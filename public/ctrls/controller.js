@@ -2,25 +2,33 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
 
   $scope.pending = [];
   $scope.reimbursed = [];
-  $scope.reimburse = true;
   $scope.edit = true;
-  // console.log($scope.reimburseDate)
+  $scope.quantity = 10;
 
   $scope.user = $cookies.getObject('user');
   console.log("user in ctrl", $scope.user)
 
+  if (!$scope.user) {
+    $state.go('login');
+    swal("Unauthorized", "Please log in", "error");
+  }
+
+
   $scope.logout = function() {
+    $scope.user = {};
     loginService.logout()
       .then(function() {
-        alert("logged out");
+        console.log($scope.user)
+        swal("User Logged Out", "", "success")
         $state.go('login')
       })
   }
 
+
   $scope.getUserExpenses = function() {
     expenseService.getUserExpenses($scope.user._id)
       .then(function(res) {
-        console.log(res);
+        console.log("user expenses", res);
         $scope.pending = [];
         $scope.reimbursed = [];
         $scope.expenses = res;
@@ -29,52 +37,96 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
             $scope.pending.push(element)
           } else {
             $scope.reimbursed.push(element);
-          }
+          };
         });
-        // $scope.userExpenses = res;
-      })
-  }
+      });
+  };
   $scope.getUserExpenses();
-
 
 
   $scope.addUserExpense = function() {
     expenseService.addUserExpense($scope.newExpense, $scope.user._id)
       .then(function(res) {
         $scope.getUserExpenses();
-        $scope.newExpense = null;
-      })
-  }
+        $scope.expense.$setUntouched();
+        $scope.newExpense = {};
+      });
+  };
 
-  $scope.reimburseExp = function(reimburseDate, expenseId) {
-    console.log(reimburseDate, expenseId);
-    expenseService.reimburse(reimburseDate, expenseId)
+
+  $scope.updateExpense = function(editExpense, expenseId) {
+    if (!editExpense) {
+      swal("Unable to Update Expense", "Inputs are invalid or empty", "error")
+    };
+    expenseService.updateExpense(editExpense, expenseId)
       .then(function(res) {
+        swal("Expense Updated", "Your expense has been successfully updated.", "success")
         $scope.getUserExpenses();
-      })
-  }
-
-  $scope.updateExpense = function(expense, expenseId) {
-    $scope.edit = true;
-    console.log($scope.edit);
-    console.log(expense, expenseId);
-    expenseService.updateExpense(expense, expenseId)
-      .then(function(res) {
-        $scope.getUserExpenses();
-      })
-  }
-
-  $scope.removeExpense = function(id) {
-    console.log(id);
-    expenseService.removeExpense(id)
-      .then(function(res) {
-        $scope.getUserExpenses();
-        console.log($scope.pending)
-      })
-  }
+      });
+  };
 
 
+  $scope.rmvAlert = function(id) {
+    $scope.rmvId = id;
+    swal({
+      title: "Delete Expense: Are you sure?",
+      text: "You will not be able to recover this expense!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    }, function(isConfirm) {
+      if (isConfirm) {
+        expenseService.removeExpense($scope.rmvId)
+          .then(function(res) {
+            swal("Deleted!", "Your expense has been successfully deleted.", "success");
+            $scope.getUserExpenses();
+          });
+      } else {
+        swal("Canceled", "Your imaginary file is safe :)", "error");
+      };
+    });
+  };
 
 
-  //end ctrl
+  $scope.rmbAlert = function(expenseId) {
+    $scope.expId = expenseId;
+    console.log($scope.expId)
+    swal({
+      title: "Reimburse Expense",
+      text: "Date of Reimbursement",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      inputPlaceholder: "MM/DD/YYYY"
+    }, function(inputValue) {
+      console.log("inputValue:", inputValue);
+      if (!inputValue) {
+        swal.showInputError("You need to enter the date of reimbursement!");
+        return false
+      };
+      $scope.rmbDate = new Date(inputValue);
+      console.log("rmbDate", $scope.rmbDate.valueOf());
+      if (!$scope.rmbDate.valueOf()) {
+        swal.showInputError("You need to enter a valid date!");
+        return false
+      };
+      if ($scope.rmbDate.valueOf()) {
+        console.log("date is good");
+        swal("Reimbursed!", "Reimbursement Date: " + inputValue, "success");
+        expenseService.reimburse($scope.rmbDate, $scope.expId)
+          .then(function(res) {
+            $scope.getUserExpenses();
+          });
+      };
+    });
+  };
+
+
+
+  // END CTRL
 })

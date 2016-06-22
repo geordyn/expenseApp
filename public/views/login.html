@@ -1,82 +1,60 @@
 <div id="login">
-  <h2>
-      <img class="" src="../styles/images/iSpend.png">
-      <br>Sign In
-  </h2>
-  <form>
-    <fieldset>
+  <div class="logo">
+    <img class="" src="../styles/images/iSpend.png">
+  </div>
 
-      <p>
-        <label class="loginLabel">Username</label>
-        <input class="loginInput" ng-model="userLogin.username" type="text">
-      </p>
-      <p>
-        <label class="loginLabel">Password</label>
-        <input class="loginInput" ng-model="userLogin.password" type="password" id="password" value="password">
-      </p>
-      <p>
-        <input class="loginButton" type="button" ng-click="loginUser()" value="Sign In">
-      </p>
 
-    </fieldset>
-  </form>
+
+
+  <div id="formStyle">
+    <form novalidate name="login">
+      <div class="form_wrap">
+        <h2>Already a User? Sign In.</h2>
+
+        <input type="text" name="username" placeholder="Username" ng-model="userLogin.username" ng-required="true" ng-minlength="1" />
+        <p class="error" ng-show="login.username.$invalid && login.username.$touched"> Please, enter your first name</p>
+
+        <input type="password" name="loginPsw" placeholder="Password" ng-model="userLogin.password" ng-required="true" ng-minlength="1" />
+        <p class="error" ng-show="login.loginPsw.$invalid && login.loginPsw.$touched">Please, enter your password.</p>
+
+
+        <div>
+          <input type="submit" class="loginButton" value="Sign In" ng-click="loginUser()" />
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+
+
+  <div id="formStyle">
+    <form novalidate name="signUp">
+      <div class="form_wrap">
+        <h2>Create an Account</h2>
+
+        <input type="text" name="firstname" placeholder="First Name" ng-model="userInfo.first" ng-required="true" ng-minlength="2" />
+        <p class="error" ng-show="signUp.firstname.$invalid && signUp.firstname.$touched"> Please, enter your first name</p>
+
+        <input type="text" name="lastname" ng-model="userInfo.last" placeholder="Last Name" ng-required="true" />
+        <p class="error" ng-show="signUp.lastname.$invalid && signUp.lastname.$touched"> Please, enter your last name</p>
+
+        <input type="text" name="username" ng-model="userInfo.username" placeholder="Username" ng-required="true" />
+        <p class="error" ng-show="signUp.username.$invalid && signUp.username.$touched"> Please, enter your username.</p>
+
+        <input type="password" name="psw1" placeholder="Password" ng-model="userInfo.password" ng-required="true" ng-minlength="6" />
+        <p class="error" ng-show="signUp.psw1.$invalid && signUp.psw1.$touched">Please, enter a 6 digit password</p>
+
+        <input type="password" name="psw" placeholder="Re-type Password" ng-model="userInfo.passwordTwo" ng-required="true" ng-minlength="6" />
+        <p class="error" ng-show="signUp.psw.$invalid && signUp.psw.$touched">Please, re-enter your 6 digit password</p>
+      </div>
+
+      <div>
+        <input type="submit" class="loginButton" value="Submit" ng-click="createUser()" />
+      </div>
+
+    </form>
+  </div>
+
+  <!-- // END #LOGIN // -->
 </div>
-
-<div id="login">
-  <h2>
-      Sign Up
-  </h2>
-  <form>
-    <fieldset>
-
-      <p>
-        <label class="loginLabel">First Name</label>
-        <input class="loginInput" ng-model="userInfo.first">
-      </p>
-      <p>
-        <label class="loginLabel">Last Name</label>
-        <input class="loginInput" ng-model="userInfo.last">
-      </p>
-      <p>
-        <label class="loginLabel">Username</label>
-        <input class="loginInput" ng-model="userInfo.username">
-      </p>
-      <p>
-        <label class="loginLabel">Password</label>
-        <input class="loginInput" ng-model="userInfo.password">
-      </p>
-      <p>
-        <label class="loginLabel">Retype Password</label>
-        <input class="loginInput">
-      </p>
-      <p>
-          <input class="loginButton" type="button" ng-click="createUser()" value="Create Account">
-      </p>
-
-    </fieldset>
-  </form>
-</div>
-
-
-
-
-
-<!-- <h1>login</h1>
-<form>
-  <input placeholder="First Name" ng-model="userInfo.first">
-  <input placeholder="Last Name" ng-model="userInfo.last">
-  <input placeholder="Username" ng-model="userInfo.username">
-  <input placeholder="Password" ng-model="userInfo.password">
-  <input placeholder="Retype Password">
-  <input type="submit">
-  <button ng-click="createUser()">Create Account</button>
-</form> -->
-
-
-<!-- <form>
-<input placeholder="Username" ng-model="userLogin.username">
-<input placeholder="Password" ng-model="userLogin.password">
-<input placeholder="Retype Password">
-<input type="submit">
-<button ng-click="loginUser()">Login</button>
-</form> -->

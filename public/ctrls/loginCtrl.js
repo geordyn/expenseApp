@@ -3,28 +3,24 @@ angular.module("expenseApp").controller("loginCtrl", function($scope, $state, lo
 
 
   $scope.createUser = function() {
-    loginService.createUser($scope.userInfo)
-      .then(function(res) {
-        $state.go('login');
-        $scope.userLogin = $scope.userInfo;
-        $scope.userInfo = null;
-      });
+    if ($scope.userInfo.password === $scope.userInfo.passwordTwo) {
+      loginService.createUser($scope.userInfo)
+        .then(function(res) {
+          swal("Created New User", "You are now logged in.", "success")
+          $state.go('main');
+        });
+    } else {
+      swal("Passwords Do Not Match", "Please check to be sure your passwords match.", "error")
+    }
   };
 
   $scope.loginUser = function() {
     loginService.loginUser($scope.userLogin)
       .then(function(res) {
+        // swal("User Logged In", "", "success")
         $scope.userLogin = null;
         $scope.user = $cookies.getObject('user');
-        console.log($scope.user, "is logged in")
         $state.go('main');
-      });
-  };
-
-  $scope.logout = function() {
-    loginService.logout()
-      .then(function(res) {
-        $state.go('login');
       });
   };
 
