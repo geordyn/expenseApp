@@ -45,12 +45,16 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
 
 
   $scope.addUserExpense = function() {
-    expenseService.addUserExpense($scope.newExpense, $scope.user._id)
-      .then(function(res) {
-        $scope.getUserExpenses();
-        $scope.expense.$setUntouched();
-        $scope.newExpense = {};
-      });
+      if(!$scope.newExpense.merchant || !$scope.newExpense.cost){
+          console.log("sigh")
+      } else {
+          expenseService.addUserExpense($scope.newExpense, $scope.user._id)
+            .then(function(res) {
+              $scope.getUserExpenses();
+              $scope.expense.$setUntouched();
+              $scope.newExpense = {};
+            });
+      }
   };
 
 
