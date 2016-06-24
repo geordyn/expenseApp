@@ -6,7 +6,6 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
   $scope.quantity = 10;
 
   $scope.user = $cookies.getObject('user');
-  console.log("user in ctrl", $scope.user)
 
   if (!$scope.user) {
     $state.go('login');
@@ -18,7 +17,6 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
     $scope.user = {};
     loginService.logout()
       .then(function() {
-        console.log($scope.user)
         swal("User Logged Out", "", "success")
         $state.go('login')
       })
@@ -28,7 +26,6 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
   $scope.getUserExpenses = function() {
     expenseService.getUserExpenses($scope.user._id)
       .then(function(res) {
-        console.log("user expenses", res);
         $scope.pending = [];
         $scope.reimbursed = [];
         $scope.expenses = res;
@@ -45,9 +42,6 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
 
 
   $scope.addUserExpense = function() {
-      if(!$scope.newExpense.merchant || !$scope.newExpense.cost){
-          console.log("sigh")
-      } else {
           expenseService.addUserExpense($scope.newExpense, $scope.user._id)
             .then(function(res) {
               $scope.getUserExpenses();
@@ -98,7 +92,6 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
 
   $scope.rmbAlert = function(expenseId) {
     $scope.expId = expenseId;
-    console.log($scope.expId)
     swal({
       title: "Reimburse Expense",
       text: "Date of Reimbursement",
@@ -108,19 +101,16 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
       animation: "slide-from-top",
       inputPlaceholder: "MM/DD/YYYY"
     }, function(inputValue) {
-      console.log("inputValue:", inputValue);
       if (!inputValue) {
         swal.showInputError("You need to enter the date of reimbursement!");
         return false
       };
       $scope.rmbDate = new Date(inputValue);
-      console.log("rmbDate", $scope.rmbDate.valueOf());
       if (!$scope.rmbDate.valueOf()) {
         swal.showInputError("You need to enter a valid date!");
         return false
       };
       if ($scope.rmbDate.valueOf()) {
-        console.log("date is good");
         swal("Reimbursed!", "Reimbursement Date: " + inputValue, "success");
         expenseService.reimburse($scope.rmbDate, $scope.expId)
           .then(function(res) {

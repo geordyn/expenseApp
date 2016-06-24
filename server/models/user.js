@@ -22,7 +22,7 @@ User.methods.validatePassword = function( password ) {
 };
 
 
-//////////?//////////////////
+//////////// BEFORE A USER IS SAVED, IT HASHES THE PASSWORD //////////////
 User.pre('save', function(next){
  var user = this;
  if(!user.isModified('password')) return next();
