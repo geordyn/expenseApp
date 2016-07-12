@@ -48,8 +48,7 @@ angular.module('expenseApp').controller('expenseCtrl', function($scope, $state, 
               $scope.expense.$setUntouched();
               $scope.newExpense = {};
             });
-      }
-  };
+};
 
 
   $scope.updateExpense = function(editExpense, expenseId) {
