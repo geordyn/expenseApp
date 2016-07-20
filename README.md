@@ -6,12 +6,13 @@ iSpend is a web application that allows users to keep track of their expenses at
 * Angular.js
 * MongoDB
 
-## Usage
-COMING SOON: expenses.geordyn.com
+## Live Site
+[Live Site Here](https://geordynexpenses.herokuapp.com/#/)
 
 
 ## Known Issues
 * Not optimized for desktop use (mobile/tablet only)
+* Safari browser has some styling issues
 
 ## Contact
 * email: geordyn.ader@gmail.com
